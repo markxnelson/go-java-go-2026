@@ -1,0 +1,17 @@
+gomaxprocs=12
+requests=172790
+failures=0
+elapsed=5.009313801s
+requestsPerSecond=34493.75
+p50=4.844805ms
+p95=13.069944ms
+p99=19.414017ms
+p999=32.845618ms
+min=148.046µs
+max=43.035989ms
+p50Nanos=4844805
+p95Nanos=13069944
+p99Nanos=19414017
+p999Nanos=32845618
+minNanos=148046
+maxNanos=43035989

@@ -1,0 +1,3 @@
+WARNING: Final field _cipher in class org.sonatype.plexus.components.sec.dispatcher.DefaultSecDispatcher has been mutated reflectively by class org.eclipse.sisu.bean.BeanPropertyField in unnamed module @7ea37dbf (file:/home/mark/apache-maven-3.9.12/lib/org.eclipse.sisu.inject-0.9.0.M4.jar)
+WARNING: Use --enable-final-field-mutation=ALL-UNNAMED to avoid a warning
+WARNING: Mutating final fields will be blocked in a future release unless final field mutation is enabled

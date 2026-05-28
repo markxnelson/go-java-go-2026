@@ -6,8 +6,8 @@ The comparison is intentionally small and boring:
 
 - Go service: standard library `net/http`
 - Java service: Helidon SE WebServer
-- Workload: short string manipulation plus a stable hash
-- Endpoints: `/health`, `/ready`, `/api/strings/{value}`
+- Workload: generated string manipulation plus stable hash and configurable extra CRC work
+- Endpoints: `/health`, `/ready`, `/api/strings/{value}`, `/api/generated/{size}`
 - Optional per-request logging: `LOG_REQUESTS=true`
 
 The baseline versions for the 2026 article are:
@@ -32,14 +32,13 @@ The updated article is in `article/can-java-microservices-be-as-fast-as-go-2026.
 ## Run The Go Service
 
 ```bash
-cd go-service
-go run ./cmd/server
+scripts/run-go.sh
 ```
 
 Use a different port:
 
 ```bash
-PORT=8081 go run ./cmd/server
+PORT=8081 scripts/run-go.sh
 ```
 
 ## Run The Helidon Service
@@ -63,6 +62,7 @@ PORT=8082 java -jar target/go-java-go-helidon.jar
 ```bash
 curl -s http://localhost:8080/health
 curl -s http://localhost:8080/api/strings/Helidon
+curl -s http://localhost:8080/api/generated/2048
 ```
 
 ## Load Test
@@ -71,17 +71,36 @@ The load driver is deliberately small so the article can explain it in a few lin
 
 ```bash
 cd bench
-go run ./cmd/load -url http://localhost:8080/api/strings/Helidon -concurrency 100 -requests 100000 -warmup 1000
+go run ./cmd/load -url http://localhost:8080/api/generated/128 -concurrency 100 -duration 10s -warmup-duration 3s
 ```
 
 It prints request count, failures, elapsed time, requests per second, and latency percentiles.
 
-## Reproduce A Local Comparison
+## Reproduce The Sequential Matrix
 
-Run each service in one terminal, then run the load driver from another terminal:
+The sequential benchmark starts one service, runs the matrix, stops it, and then starts the next service. This avoids measuring Go and Java while they compete for the same machine.
 
 ```bash
-scripts/compare-local.sh
+RESULTS_DIR=/home/mark/redstack/go-java-go-2026/results/sequential_generated_$(date +%Y%m%d_%H%M%S) \
+GO_PORT=25081 \
+JAVA_PORT=25082 \
+CONCURRENCY_LEVELS="1 6 12 24 48 96 192" \
+PAYLOAD_SIZES="7 128 2048 8192" \
+REPEATS=2 \
+DURATION=5s \
+WARMUP_DURATION=2s \
+JAVA_VARIANTS="oracle-jdk-jvm oracle-jdk-leyden-aot graalvm-jvm graalvm-native" \
+WORK_FACTOR=10 \
+ENDPOINT_MODE=generated \
+scripts/run-sequential-matrix.sh
 ```
 
-The script writes JSON-ish text result files under `results/`.
+Each run writes:
+
+- `configurations.csv`
+- `measurements.csv`
+- `summary-by-cell.csv`
+- `peak-throughput-by-payload.csv`
+- `throughput-pivot-by-cell.csv`
+
+The serious run used in the article is under `results/sequential_generated_serious_20260528_1010/`.

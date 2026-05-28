@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"runtime"
 	"sort"
 	"sync"
 	"sync/atomic"
@@ -16,11 +17,26 @@ func main() {
 	concurrency := flag.Int("concurrency", 100, "number of concurrent workers")
 	requests := flag.Int("requests", 100000, "measured request count")
 	warmup := flag.Int("warmup", 1000, "warmup request count")
+	duration := flag.Duration("duration", 0, "measured run duration; when set, requests is ignored")
+	warmupDuration := flag.Duration("warmup-duration", 0, "warmup duration; when set, warmup is ignored")
+	timeout := flag.Duration("timeout", 10*time.Second, "per-request timeout")
 	flag.Parse()
 
-	client := &http.Client{Timeout: 10 * time.Second}
-	run(client, *url, *concurrency, *warmup, false)
-	result := run(client, *url, *concurrency, *requests, true)
+	client := &http.Client{
+		Timeout:   *timeout,
+		Transport: transportFor(*concurrency),
+	}
+	warmupRequests := *warmup
+	if *warmupDuration > 0 {
+		warmupRequests = 0
+	}
+	run(client, *url, *concurrency, warmupRequests, *warmupDuration, false)
+
+	measuredRequests := *requests
+	if *duration > 0 {
+		measuredRequests = 0
+	}
+	result := run(client, *url, *concurrency, measuredRequests, *duration, true)
 	printResult(result)
 }
 
@@ -32,28 +48,43 @@ type result struct {
 	firstFailure string
 }
 
-func run(client *http.Client, url string, concurrency int, requests int, measured bool) result {
-	if requests <= 0 {
+func run(client *http.Client, url string, concurrency int, requests int, duration time.Duration, measured bool) result {
+	if requests <= 0 && duration <= 0 {
 		return result{}
 	}
 	if concurrency <= 0 {
 		concurrency = 1
 	}
 
-	jobs := make(chan int)
-	latencies := make([]time.Duration, 0, requests)
-	var latencyMu sync.Mutex
+	startGate := make(chan struct{})
+	workerLatencies := make([][]time.Duration, concurrency)
 	var failures int64
 	var firstFailure string
 	var firstFailureMu sync.Mutex
+	var completed int64
+	var next int64
 	var wg sync.WaitGroup
 
 	start := time.Now()
 	for i := 0; i < concurrency; i++ {
 		wg.Add(1)
-		go func() {
+		go func(worker int) {
 			defer wg.Done()
-			for range jobs {
+			localLatencies := make([]time.Duration, 0, requestsForWorker(requests, concurrency))
+			<-startGate
+			deadline := time.Time{}
+			if duration > 0 {
+				deadline = start.Add(duration)
+			}
+			for {
+				if requests > 0 {
+					if atomic.AddInt64(&next, 1) > int64(requests) {
+						break
+					}
+				} else if time.Now().After(deadline) {
+					break
+				}
+
 				requestStart := time.Now()
 				if err := call(client, url); err != nil {
 					atomic.AddInt64(&failures, 1)
@@ -64,26 +95,40 @@ func run(client *http.Client, url string, concurrency int, requests int, measure
 					firstFailureMu.Unlock()
 				}
 				if measured {
-					latencyMu.Lock()
-					latencies = append(latencies, time.Since(requestStart))
-					latencyMu.Unlock()
+					localLatencies = append(localLatencies, time.Since(requestStart))
 				}
+				atomic.AddInt64(&completed, 1)
 			}
-		}()
+			workerLatencies[worker] = localLatencies
+		}(i)
 	}
 
-	for i := 0; i < requests; i++ {
-		jobs <- i
-	}
-	close(jobs)
+	start = time.Now()
+	close(startGate)
 	wg.Wait()
 
+	latencies := mergeLatencies(workerLatencies)
 	return result{
-		requests:     requests,
+		requests:     int(completed),
 		failures:     failures,
 		elapsed:      time.Since(start),
 		latencies:    latencies,
 		firstFailure: firstFailure,
+	}
+}
+
+func transportFor(concurrency int) *http.Transport {
+	if concurrency < 1 {
+		concurrency = 1
+	}
+	idle := concurrency * 2
+	return &http.Transport{
+		Proxy:               http.ProxyFromEnvironment,
+		MaxIdleConns:        idle,
+		MaxIdleConnsPerHost: idle,
+		IdleConnTimeout:     90 * time.Second,
+		DisableCompression:  true,
+		ForceAttemptHTTP2:   false,
 	}
 }
 
@@ -107,6 +152,7 @@ func printResult(result result) {
 
 	seconds := result.elapsed.Seconds()
 	rps := float64(result.requests) / seconds
+	fmt.Printf("gomaxprocs=%d\n", runtime.GOMAXPROCS(0))
 	fmt.Printf("requests=%d\n", result.requests)
 	fmt.Printf("failures=%d\n", result.failures)
 	if result.firstFailure != "" {
@@ -117,13 +163,26 @@ func printResult(result result) {
 	fmt.Printf("p50=%s\n", percentile(result.latencies, 50))
 	fmt.Printf("p95=%s\n", percentile(result.latencies, 95))
 	fmt.Printf("p99=%s\n", percentile(result.latencies, 99))
+	fmt.Printf("p999=%s\n", percentile(result.latencies, 999))
+	fmt.Printf("min=%s\n", min(result.latencies))
+	fmt.Printf("max=%s\n", max(result.latencies))
+	fmt.Printf("p50Nanos=%d\n", percentile(result.latencies, 50).Nanoseconds())
+	fmt.Printf("p95Nanos=%d\n", percentile(result.latencies, 95).Nanoseconds())
+	fmt.Printf("p99Nanos=%d\n", percentile(result.latencies, 99).Nanoseconds())
+	fmt.Printf("p999Nanos=%d\n", percentile(result.latencies, 999).Nanoseconds())
+	fmt.Printf("minNanos=%d\n", min(result.latencies).Nanoseconds())
+	fmt.Printf("maxNanos=%d\n", max(result.latencies).Nanoseconds())
 }
 
 func percentile(values []time.Duration, p int) time.Duration {
 	if len(values) == 0 {
 		return 0
 	}
-	index := (len(values)*p + 99) / 100
+	denominator := 100
+	if p > 100 {
+		denominator = 1000
+	}
+	index := (len(values)*p + denominator - 1) / denominator
 	if index < 1 {
 		index = 1
 	}
@@ -131,4 +190,37 @@ func percentile(values []time.Duration, p int) time.Duration {
 		index = len(values)
 	}
 	return values[index-1]
+}
+
+func min(values []time.Duration) time.Duration {
+	if len(values) == 0 {
+		return 0
+	}
+	return values[0]
+}
+
+func max(values []time.Duration) time.Duration {
+	if len(values) == 0 {
+		return 0
+	}
+	return values[len(values)-1]
+}
+
+func requestsForWorker(requests int, concurrency int) int {
+	if requests <= 0 || concurrency <= 0 {
+		return 1024
+	}
+	return requests/concurrency + 1
+}
+
+func mergeLatencies(workerLatencies [][]time.Duration) []time.Duration {
+	total := 0
+	for _, latencies := range workerLatencies {
+		total += len(latencies)
+	}
+	merged := make([]time.Duration, 0, total)
+	for _, latencies := range workerLatencies {
+		merged = append(merged, latencies...)
+	}
+	return merged
 }

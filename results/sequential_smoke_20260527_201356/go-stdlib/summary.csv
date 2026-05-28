@@ -1,0 +1,3 @@
+runId,runtimeVariant,service,workFactor,payloadSize,concurrency,repeat,requests,failures,elapsed,requestsPerSecond,p50,p95,p99,p999,min,max
+go-stdlib,go-stdlib,go,1,7,1,1,100000,0,18.308522109s,5461.94,171.372µs,262.542µs,371.999µs,914.999µs,50.541µs,10.4607ms
+go-stdlib,go-stdlib,go,1,7,12,1,100000,0,2.725287875s,36693.37,265.487µs,777.678µs,1.337299ms,2.435532ms,40.146µs,5.291377ms

@@ -1,0 +1,3 @@
+runId,runtimeVariant,service,workFactor,endpointMode,payloadSize,bestConcurrency,peakRequestsPerSecondMedian,p95NanosMedianAtPeak,p99NanosMedianAtPeak,failuresTotalAtPeak
+sequential_generated_probe_20260528_0750,go-stdlib,go,2,generated,2048,96,17657.31,18571929,31497181,0
+sequential_generated_probe_20260528_0750,oracle-jdk-jvm,helidon,2,generated,2048,96,2136.47,48128105,48346458,0

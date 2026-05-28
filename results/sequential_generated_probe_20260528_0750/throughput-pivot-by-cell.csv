@@ -1,0 +1,3 @@
+runId,workFactor,endpointMode,payloadSize,concurrency,go-stdlibRpsMedian,oracle-jdk-jvmRpsMedian
+sequential_generated_probe_20260528_0750,2,generated,2048,12,9628.68,269.25
+sequential_generated_probe_20260528_0750,2,generated,2048,96,17657.31,2136.47

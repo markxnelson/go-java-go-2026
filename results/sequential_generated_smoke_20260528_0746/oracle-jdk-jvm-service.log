@@ -1,0 +1,10 @@
+May 28, 2026 9:07:40 AM io.helidon.common.features.HelidonFeatures features
+INFO: Helidon SE 4.4.1 features: [Config, Encoding, Media, Registry, WebServer]
+May 28, 2026 9:07:40 AM io.helidon.webserver.ServerListener startIt
+INFO: [0x6ab13029] http://0.0.0.0:24082 bound for socket '@default'
+May 28, 2026 9:07:40 AM io.helidon.logging.jul.JulProvider doConfigureLogging
+INFO: Logging at runtime configured using defaults
+May 28, 2026 9:07:40 AM io.helidon.webserver.LoomServer startIt
+INFO: Started all channels in 31 milliseconds. 698 milliseconds since JVM startup. Java 26.0.1+8-34
+May 28, 2026 9:07:40 AM com.redstack.gojavago.Main main
+INFO: helidon service listening on http://localhost:24082 processors=12 maxMemoryBytes=50264539136 serverModel="Helidon WebServer LoomServer virtual-thread-per-task" workFactor=2

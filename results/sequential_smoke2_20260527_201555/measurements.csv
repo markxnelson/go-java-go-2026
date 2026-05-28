@@ -1,0 +1,7 @@
+runId,runtimeVariant,service,workFactor,payloadSize,concurrency,repeat,requests,failures,elapsed,requestsPerSecond,p50,p95,p99,p999,min,max
+sequential_smoke2_20260527_201555,go-stdlib,go,1,7,1,1,11214,0,2.000066727s,5606.81,170.14µs,254.942µs,323.119µs,591.872µs,95.532µs,950.467µs
+sequential_smoke2_20260527_201555,go-stdlib,go,1,7,12,1,81436,0,2.000737746s,40702.99,244.593µs,656.094µs,1.156929ms,2.135963ms,38.707µs,6.445911ms
+sequential_smoke2_20260527_201555,oracle-jdk-jvm,helidon,1,7,1,1,7268,0,2.000149958s,3633.73,228.006µs,452.582µs,837.024µs,2.124202ms,117.115µs,6.142115ms
+sequential_smoke2_20260527_201555,oracle-jdk-jvm,helidon,1,7,12,1,73763,0,2.000433901s,36873.50,282.658µs,645.913µs,1.166069ms,2.315727ms,43.261µs,6.218736ms
+sequential_smoke2_20260527_201555,oracle-jdk-leyden-aot,helidon,1,7,1,1,10954,0,2.000129965s,5476.64,174.07µs,251.139µs,325.894µs,641.273µs,104.549µs,1.763613ms
+sequential_smoke2_20260527_201555,oracle-jdk-leyden-aot,helidon,1,7,12,1,76041,0,2.000578876s,38009.50,264.683µs,632.136µs,1.193047ms,3.096482ms,38.848µs,21.604985ms

@@ -1,0 +1,472 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Detecting the operating system and CPU architecture
+[INFO] ------------------------------------------------------------------------
+[INFO] os.detected.name: linux
+[INFO] os.detected.arch: x86_64
+[INFO] os.detected.version: 6.6
+[INFO] os.detected.version.major: 6
+[INFO] os.detected.version.minor: 6
+[INFO] os.detected.release: ubuntu
+[INFO] os.detected.release.version: 22.04
+[INFO] os.detected.release.like.ubuntu: true
+[INFO] os.detected.release.like.debian: true
+[INFO] os.detected.classifier: linux-x86_64
+[INFO] 
+[INFO] ------------------< com.redstack:go-java-go-helidon >-------------------
+[INFO] Building go-java-go-helidon 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ go-java-go-helidon ---
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ go-java-go-helidon ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ go-java-go-helidon ---
+[INFO] skip non existing resourceDirectory /home/mark/redstack/go-java-go-2026/helidon-service/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ go-java-go-helidon ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.1.0:test (default-test) @ go-java-go-helidon ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.3.0:jar (default-jar) @ go-java-go-helidon ---
+[INFO] 
+[INFO] --- shade:3.6.2:shade (default) @ go-java-go-helidon ---
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] go-java-go-helidon.jar, helidon-common-mapper-4.4.1.jar define 51 overlapping classes and resources: 
+[WARNING]   - META-INF/helidon/io.helidon.common.mapper/service-registry.json
+[WARNING]   - META-INF/helidon/io.helidon.common.mapper/service.loader
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-mapper/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-mapper/pom.xml
+[WARNING]   - io.helidon.common.mapper.BuiltInMappers
+[WARNING]   - io.helidon.common.mapper.BuiltInMappers$ClassPair
+[WARNING]   - io.helidon.common.mapper.DefaultMapperProvider
+[WARNING]   - io.helidon.common.mapper.DefaultMapperProvider$CacheKey
+[WARNING]   - io.helidon.common.mapper.DefaultMapperProvider__ServiceDescriptor
+[WARNING]   - io.helidon.common.mapper.DefaultResolverService
+[WARNING]   - 41 more...
+[WARNING] go-java-go-helidon.jar, helidon-common-key-util-4.4.1.jar define 26 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-key-util/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-key-util/pom.xml
+[WARNING]   - META-INF/native-image/io.helidon.common/helidon-common-key-util/native-image.properties
+[WARNING]   - io.helidon.common.pki.Keys
+[WARNING]   - io.helidon.common.pki.Keys$Builder
+[WARNING]   - io.helidon.common.pki.Keys$BuilderBase
+[WARNING]   - io.helidon.common.pki.Keys$BuilderBase$KeysImpl
+[WARNING]   - io.helidon.common.pki.KeysBlueprint
+[WARNING]   - io.helidon.common.pki.KeysBuilderDecorator
+[WARNING]   - io.helidon.common.pki.KeystoreKeys
+[WARNING]   - 16 more...
+[WARNING] go-java-go-helidon.jar, helidon-common-config-4.4.1.jar, helidon-common-mapper-4.4.1.jar, helidon-config-4.4.1.jar, helidon-http-4.4.1.jar, helidon-http-encoding-4.4.1.jar, helidon-http-media-4.4.1.jar, helidon-metrics-api-4.4.1.jar, helidon-service-registry-4.4.1.jar, helidon-webserver-4.4.1.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/helidon/manifest
+[WARNING] go-java-go-helidon.jar, helidon-common-media-type-4.4.1.jar define 15 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-media-type/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-media-type/pom.xml
+[WARNING]   - META-INF/native-image/io.helidon.common/helidon-common-media-type/resource-config.json
+[WARNING]   - io.helidon.common.media.type.BuiltInsDetector
+[WARNING]   - io.helidon.common.media.type.CustomDetector
+[WARNING]   - io.helidon.common.media.type.Detectors
+[WARNING]   - io.helidon.common.media.type.MediaType
+[WARNING]   - io.helidon.common.media.type.MediaTypeEnum
+[WARNING]   - io.helidon.common.media.type.MediaTypeImpl
+[WARNING]   - io.helidon.common.media.type.MediaTypes
+[WARNING]   - 5 more...
+[WARNING] go-java-go-helidon.jar, helidon-common-task-4.4.1.jar define 5 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-task/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-task/pom.xml
+[WARNING]   - io.helidon.common.task.HelidonTaskExecutor
+[WARNING]   - io.helidon.common.task.InterruptableTask
+[WARNING]   - io.helidon.common.task.package-info
+[WARNING] go-java-go-helidon.jar, helidon-builder-api-4.4.1.jar define 57 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.builder/helidon-builder-api/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.builder/helidon-builder-api/pom.xml
+[WARNING]   - io.helidon.builder.api.BuilderSupport
+[WARNING]   - io.helidon.builder.api.Description
+[WARNING]   - io.helidon.builder.api.GeneratedBuilder
+[WARNING]   - io.helidon.builder.api.GeneratedBuilder$EqualityUtil
+[WARNING]   - io.helidon.builder.api.Option
+[WARNING]   - io.helidon.builder.api.Option$Access
+[WARNING]   - io.helidon.builder.api.Option$AllowedValue
+[WARNING]   - io.helidon.builder.api.Option$AllowedValues
+[WARNING]   - 47 more...
+[WARNING] go-java-go-helidon.jar, helidon-common-parameters-4.4.1.jar define 8 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-parameters/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-parameters/pom.xml
+[WARNING]   - io.helidon.common.parameters.Parameters
+[WARNING]   - io.helidon.common.parameters.Parameters$Builder
+[WARNING]   - io.helidon.common.parameters.ParametersEmpty
+[WARNING]   - io.helidon.common.parameters.ParametersMap
+[WARNING]   - io.helidon.common.parameters.ParametersSingleValueMap
+[WARNING]   - io.helidon.common.parameters.package-info
+[WARNING] go-java-go-helidon.jar, helidon-metrics-api-4.4.1.jar define 128 overlapping classes and resources: 
+[WARNING]   - META-INF/helidon/io.helidon.metrics.api/service-registry.json
+[WARNING]   - META-INF/maven/io.helidon.metrics/helidon-metrics-api/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.metrics/helidon-metrics-api/pom.xml
+[WARNING]   - io.helidon.metrics.api.Bucket
+[WARNING]   - io.helidon.metrics.api.BuiltInMeterNameFormat
+[WARNING]   - io.helidon.metrics.api.Clock
+[WARNING]   - io.helidon.metrics.api.ComponentMetricsSettings
+[WARNING]   - io.helidon.metrics.api.ComponentMetricsSettings$Builder
+[WARNING]   - io.helidon.metrics.api.ComponentMetricsSettingsImpl
+[WARNING]   - io.helidon.metrics.api.ComponentMetricsSettingsImpl$Builder
+[WARNING]   - 118 more...
+[WARNING] go-java-go-helidon.jar, helidon-common-features-api-4.4.1.jar define 19 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common.features/helidon-common-features-api/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common.features/helidon-common-features-api/pom.xml
+[WARNING]   - io.helidon.common.features.api.Aot
+[WARNING]   - io.helidon.common.features.api.Feature
+[WARNING]   - io.helidon.common.features.api.Features
+[WARNING]   - io.helidon.common.features.api.Features$Aot
+[WARNING]   - io.helidon.common.features.api.Features$Description
+[WARNING]   - io.helidon.common.features.api.Features$Flavor
+[WARNING]   - io.helidon.common.features.api.Features$Incubating
+[WARNING]   - io.helidon.common.features.api.Features$InvalidFlavor
+[WARNING]   - 9 more...
+[WARNING] go-java-go-helidon.jar, helidon-4.4.1.jar define 8 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon/helidon/pom.properties
+[WARNING]   - META-INF/maven/io.helidon/helidon/pom.xml
+[WARNING]   - io.helidon.Main
+[WARNING]   - io.helidon.Main$KeepLoggingActiveHandler
+[WARNING]   - io.helidon.package-info
+[WARNING]   - io.helidon.spi.HelidonShutdownHandler
+[WARNING]   - io.helidon.spi.HelidonStartupProvider
+[WARNING]   - io.helidon.spi.package-info
+[WARNING] go-java-go-helidon.jar, helidon-common-features-metadata-4.4.1.jar define 22 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common.features/helidon-common-features-metadata/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common.features/helidon-common-features-metadata/pom.xml
+[WARNING]   - io.helidon.common.features.metadata.Aot
+[WARNING]   - io.helidon.common.features.metadata.Aot$Builder
+[WARNING]   - io.helidon.common.features.metadata.Aot$BuilderBase
+[WARNING]   - io.helidon.common.features.metadata.Aot$BuilderBase$AotImpl
+[WARNING]   - io.helidon.common.features.metadata.AotBlueprint
+[WARNING]   - io.helidon.common.features.metadata.Deprecation
+[WARNING]   - io.helidon.common.features.metadata.Deprecation$Builder
+[WARNING]   - io.helidon.common.features.metadata.Deprecation$BuilderBase
+[WARNING]   - 12 more...
+[WARNING] go-java-go-helidon.jar, helidon-metadata-hson-4.4.1.jar define 21 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.metadata/helidon-metadata-hson/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.metadata/helidon-metadata-hson/pom.xml
+[WARNING]   - io.helidon.metadata.hson.Hson
+[WARNING]   - io.helidon.metadata.hson.Hson$Array
+[WARNING]   - io.helidon.metadata.hson.Hson$Struct
+[WARNING]   - io.helidon.metadata.hson.Hson$Struct$Builder
+[WARNING]   - io.helidon.metadata.hson.Hson$Type
+[WARNING]   - io.helidon.metadata.hson.Hson$Value
+[WARNING]   - io.helidon.metadata.hson.HsonArray
+[WARNING]   - io.helidon.metadata.hson.HsonException
+[WARNING]   - 11 more...
+[WARNING] go-java-go-helidon.jar, helidon-common-configurable-4.4.1.jar define 59 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-configurable/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-configurable/pom.xml
+[WARNING]   - META-INF/native-image/io.helidon.common/helidon-common-configurable/native-image.properties
+[WARNING]   - io.helidon.common.configurable.AllowList
+[WARNING]   - io.helidon.common.configurable.AllowList$AllowAllPredicate
+[WARNING]   - io.helidon.common.configurable.AllowList$ExactPredicate
+[WARNING]   - io.helidon.common.configurable.AllowList$PatternPredicate
+[WARNING]   - io.helidon.common.configurable.AllowList$PrefixPredicate
+[WARNING]   - io.helidon.common.configurable.AllowList$SuffixPredicate
+[WARNING]   - io.helidon.common.configurable.AllowListConfig
+[WARNING]   - 49 more...
+[WARNING] go-java-go-helidon.jar, helidon-common-features-4.4.1.jar define 8 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common.features/helidon-common-features/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common.features/helidon-common-features/pom.xml
+[WARNING]   - META-INF/native-image/io.helidon.common.features/helidon-common-features/native-image.properties
+[WARNING]   - META-INF/native-image/io.helidon.common.features/helidon-common-features/resource-config.json
+[WARNING]   - io.helidon.common.features.FeatureCatalog
+[WARNING]   - io.helidon.common.features.HelidonFeatures
+[WARNING]   - io.helidon.common.features.HelidonFeatures$Node
+[WARNING]   - io.helidon.common.features.package-info
+[WARNING] go-java-go-helidon.jar, helidon-logging-common-4.4.1.jar define 11 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.logging/helidon-logging-common/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.logging/helidon-logging-common/pom.xml
+[WARNING]   - META-INF/native-image/io.helidon.logging/helidon-logging-common/native-image.properties
+[WARNING]   - io.helidon.logging.common.HelidonMdc
+[WARNING]   - io.helidon.logging.common.LogConfig
+[WARNING]   - io.helidon.logging.common.LogConfig$NoOpProvider
+[WARNING]   - io.helidon.logging.common.MdcSupplierPropagator
+[WARNING]   - io.helidon.logging.common.package-info
+[WARNING]   - io.helidon.logging.common.spi.LoggingProvider
+[WARNING]   - io.helidon.logging.common.spi.MdcProvider
+[WARNING]   - 1 more...
+[WARNING] go-java-go-helidon.jar, helidon-common-uri-4.4.1.jar define 29 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-uri/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-uri/pom.xml
+[WARNING]   - io.helidon.common.uri.UriBuilderSupport
+[WARNING]   - io.helidon.common.uri.UriBuilderSupport$UriInfoCustomMethods
+[WARNING]   - io.helidon.common.uri.UriBuilderSupport$UriInfoInterceptor
+[WARNING]   - io.helidon.common.uri.UriEncoding
+[WARNING]   - io.helidon.common.uri.UriEncoding$Type
+[WARNING]   - io.helidon.common.uri.UriFragment
+[WARNING]   - io.helidon.common.uri.UriInfo
+[WARNING]   - io.helidon.common.uri.UriInfo$Builder
+[WARNING]   - 19 more...
+[WARNING] go-java-go-helidon.jar, helidon-config-4.4.1.jar define 277 overlapping classes and resources: 
+[WARNING]   - META-INF/helidon/io.helidon.config/feature-registry.json
+[WARNING]   - META-INF/helidon/io.helidon.config/service-registry.json
+[WARNING]   - META-INF/helidon/io.helidon.config/service.loader
+[WARNING]   - META-INF/maven/io.helidon.config/helidon-config/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.config/helidon-config/pom.xml
+[WARNING]   - META-INF/native-image/io.helidon.config/helidon-config/resource-config.json
+[WARNING]   - io.helidon.config.AbstractConfigImpl
+[WARNING]   - io.helidon.config.AbstractConfigImpl$NodeContextImpl
+[WARNING]   - io.helidon.config.AbstractConfigSource
+[WARNING]   - io.helidon.config.AbstractConfigSource$1
+[WARNING]   - 267 more...
+[WARNING] go-java-go-helidon.jar, helidon-common-socket-4.4.1.jar define 24 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-socket/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-socket/pom.xml
+[WARNING]   - io.helidon.common.socket.HelidonSocket
+[WARNING]   - io.helidon.common.socket.IdleInputStream
+[WARNING]   - io.helidon.common.socket.NioSocket
+[WARNING]   - io.helidon.common.socket.PeerInfo
+[WARNING]   - io.helidon.common.socket.PeerInfoImpl
+[WARNING]   - io.helidon.common.socket.PlainSocket
+[WARNING]   - io.helidon.common.socket.SmartSocketWriter
+[WARNING]   - io.helidon.common.socket.SocketContext
+[WARNING]   - 14 more...
+[WARNING] go-java-go-helidon.jar, helidon-common-concurrency-limits-4.4.1.jar define 64 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common.concurrency/helidon-common-concurrency-limits/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common.concurrency/helidon-common-concurrency-limits/pom.xml
+[WARNING]   - io.helidon.common.concurrency.limits.AimdLimit
+[WARNING]   - io.helidon.common.concurrency.limits.AimdLimitConfig
+[WARNING]   - io.helidon.common.concurrency.limits.AimdLimitConfig$Builder
+[WARNING]   - io.helidon.common.concurrency.limits.AimdLimitConfig$BuilderBase
+[WARNING]   - io.helidon.common.concurrency.limits.AimdLimitConfig$BuilderBase$AimdLimitConfigImpl
+[WARNING]   - io.helidon.common.concurrency.limits.AimdLimitConfigBlueprint
+[WARNING]   - io.helidon.common.concurrency.limits.AimdLimitImpl
+[WARNING]   - io.helidon.common.concurrency.limits.AimdLimitImpl$AdjustableSemaphore
+[WARNING]   - 54 more...
+[WARNING] go-java-go-helidon.jar, helidon-common-concurrency-limits-4.4.1.jar, helidon-common-configurable-4.4.1.jar, helidon-common-key-util-4.4.1.jar, helidon-common-socket-4.4.1.jar, helidon-common-tls-4.4.1.jar, helidon-http-4.4.1.jar, helidon-http-encoding-4.4.1.jar, helidon-http-media-4.4.1.jar, helidon-metrics-api-4.4.1.jar, helidon-webserver-4.4.1.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/helidon/config-metadata.json
+[WARNING] go-java-go-helidon.jar, helidon-service-metadata-4.4.1.jar define 6 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.service/helidon-service-metadata/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.service/helidon-service-metadata/pom.xml
+[WARNING]   - io.helidon.service.metadata.DescriptorMetadata
+[WARNING]   - io.helidon.service.metadata.DescriptorMetadataImpl
+[WARNING]   - io.helidon.service.metadata.Descriptors
+[WARNING]   - io.helidon.service.metadata.package-info
+[WARNING] go-java-go-helidon.jar, helidon-logging-jul-4.4.1.jar define 16 overlapping classes and resources: 
+[WARNING]   - META-INF/helidon/native-image/reflection-config.json
+[WARNING]   - META-INF/maven/io.helidon.logging/helidon-logging-jul/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.logging/helidon-logging-jul/pom.xml
+[WARNING]   - META-INF/native-image/io.helidon.logging/helidon-logging-jul/native-image.properties
+[WARNING]   - META-INF/native-image/io.helidon.logging/helidon-logging-jul/reflect-config.json
+[WARNING]   - META-INF/native-image/io.helidon.logging/helidon-logging-jul/resource-config.json
+[WARNING]   - io.helidon.logging.jul.HelidonConsoleHandler
+[WARNING]   - io.helidon.logging.jul.HelidonFormatter
+[WARNING]   - io.helidon.logging.jul.HelidonJsonFormatter
+[WARNING]   - io.helidon.logging.jul.HelidonJsonFormatter$Field
+[WARNING]   - 6 more...
+[WARNING] go-java-go-helidon.jar, helidon-metadata-4.4.1.jar define 16 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.metadata/helidon-metadata/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.metadata/helidon-metadata/pom.xml
+[WARNING]   - META-INF/native-image/io.helidon.metadata/helidon-metadata/resource-config.json
+[WARNING]   - io.helidon.metadata.MetadataConstants
+[WARNING]   - io.helidon.metadata.MetadataDiscovery
+[WARNING]   - io.helidon.metadata.MetadataDiscovery$Mode
+[WARNING]   - io.helidon.metadata.MetadataDiscoveryContext
+[WARNING]   - io.helidon.metadata.MetadataDiscoveryImpl
+[WARNING]   - io.helidon.metadata.MetadataDiscoveryImpl$1
+[WARNING]   - io.helidon.metadata.MetadataDiscoveryImpl$FoundFile
+[WARNING]   - 6 more...
+[WARNING] go-java-go-helidon.jar, helidon-common-buffers-4.4.1.jar define 22 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-buffers/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-buffers/pom.xml
+[WARNING]   - io.helidon.common.buffers.Ascii
+[WARNING]   - io.helidon.common.buffers.BufferData
+[WARNING]   - io.helidon.common.buffers.BufferData$1
+[WARNING]   - io.helidon.common.buffers.BufferUtil
+[WARNING]   - io.helidon.common.buffers.Bytes
+[WARNING]   - io.helidon.common.buffers.CompositeArrayBufferData
+[WARNING]   - io.helidon.common.buffers.CompositeBufferData
+[WARNING]   - io.helidon.common.buffers.CompositeListBufferData
+[WARNING]   - 12 more...
+[WARNING] go-java-go-helidon.jar, helidon-service-registry-4.4.1.jar define 222 overlapping classes and resources: 
+[WARNING]   - META-INF/helidon/io.helidon.service.registry/feature-registry.json
+[WARNING]   - META-INF/helidon/io.helidon.service.registry/service-registry.json
+[WARNING]   - META-INF/maven/io.helidon.service/helidon-service-registry/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.service/helidon-service-registry/pom.xml
+[WARNING]   - META-INF/native-image/io.helidon.service/helidon-service-registry/native-image.properties
+[WARNING]   - META-INF/native-image/io.helidon.service/helidon-service-registry/resource-config.json
+[WARNING]   - io.helidon.service.registry.ActivationPhase
+[WARNING]   - io.helidon.service.registry.ActivationRequest
+[WARNING]   - io.helidon.service.registry.ActivationRequest$Builder
+[WARNING]   - io.helidon.service.registry.ActivationRequest$BuilderBase
+[WARNING]   - 212 more...
+[WARNING] go-java-go-helidon.jar, helidon-common-tls-4.4.1.jar define 35 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-tls/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-tls/pom.xml
+[WARNING]   - io.helidon.common.tls.ConfiguredTlsManager
+[WARNING]   - io.helidon.common.tls.RevocationConfig
+[WARNING]   - io.helidon.common.tls.RevocationConfig$Builder
+[WARNING]   - io.helidon.common.tls.RevocationConfig$BuilderBase
+[WARNING]   - io.helidon.common.tls.RevocationConfig$BuilderBase$RevocationConfigImpl
+[WARNING]   - io.helidon.common.tls.RevocationConfigBlueprint
+[WARNING]   - io.helidon.common.tls.Tls
+[WARNING]   - io.helidon.common.tls.TlsClientAuth
+[WARNING]   - 25 more...
+[WARNING] go-java-go-helidon.jar, helidon-http-4.4.1.jar define 129 overlapping classes and resources: 
+[WARNING]   - META-INF/helidon/io.helidon.http/service-registry.json
+[WARNING]   - META-INF/maven/io.helidon.http/helidon-http/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.http/helidon-http/pom.xml
+[WARNING]   - io.helidon.http.BadRequestException
+[WARNING]   - io.helidon.http.ByteBufferDataChunk
+[WARNING]   - io.helidon.http.ClientRequestHeaders
+[WARNING]   - io.helidon.http.ClientRequestHeadersImpl
+[WARNING]   - io.helidon.http.ClientResponseHeaders
+[WARNING]   - io.helidon.http.ClientResponseHeadersImpl
+[WARNING]   - io.helidon.http.ClientResponseTrailers
+[WARNING]   - 119 more...
+[WARNING] go-java-go-helidon.jar, helidon-webserver-4.4.1.jar define 266 overlapping classes and resources: 
+[WARNING]   - META-INF/helidon/io.helidon.webserver/feature-registry.json
+[WARNING]   - META-INF/helidon/io.helidon.webserver/service-registry.json
+[WARNING]   - META-INF/helidon/io.helidon.webserver/service.loader
+[WARNING]   - META-INF/maven/io.helidon.webserver/helidon-webserver/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.webserver/helidon-webserver/pom.xml
+[WARNING]   - io.helidon.webserver.CloseConnectionException
+[WARNING]   - io.helidon.webserver.ConnectionConfig
+[WARNING]   - io.helidon.webserver.ConnectionConfig$Builder
+[WARNING]   - io.helidon.webserver.ConnectionConfig$BuilderBase
+[WARNING]   - io.helidon.webserver.ConnectionConfig$BuilderBase$ConnectionConfigImpl
+[WARNING]   - 256 more...
+[WARNING] go-java-go-helidon.jar, helidon-4.4.1.jar, helidon-builder-api-4.4.1.jar, helidon-common-4.4.1.jar, helidon-common-buffers-4.4.1.jar, helidon-common-concurrency-limits-4.4.1.jar, helidon-common-config-4.4.1.jar, helidon-common-configurable-4.4.1.jar, helidon-common-context-4.4.1.jar, helidon-common-features-4.4.1.jar, helidon-common-features-api-4.4.1.jar, helidon-common-features-metadata-4.4.1.jar, helidon-common-key-util-4.4.1.jar, helidon-common-mapper-4.4.1.jar, helidon-common-media-type-4.4.1.jar, helidon-common-parameters-4.4.1.jar, helidon-common-resumable-4.4.1.jar, helidon-common-security-4.4.1.jar, helidon-common-socket-4.4.1.jar, helidon-common-task-4.4.1.jar, helidon-common-tls-4.4.1.jar, helidon-common-types-4.4.1.jar, helidon-common-uri-4.4.1.jar, helidon-config-4.4.1.jar, helidon-http-4.4.1.jar, helidon-http-encoding-4.4.1.jar, helidon-http-media-4.4.1.jar, helidon-logging-common-4.4.1.jar, helidon-logging-jul-4.4.1.jar, helidon-metadata-4.4.1.jar, helidon-metadata-hson-4.4.1.jar, helidon-metrics-api-4.4.1.jar, helidon-service-metadata-4.4.1.jar, helidon-service-registry-4.4.1.jar, helidon-webserver-4.4.1.jar define 3 overlapping resources: 
+[WARNING]   - META-INF/LICENSE.txt
+[WARNING]   - META-INF/MANIFEST.MF
+[WARNING]   - META-INF/NOTICE.txt
+[WARNING] go-java-go-helidon.jar, helidon-http-media-4.4.1.jar define 56 overlapping classes and resources: 
+[WARNING]   - META-INF/helidon/io.helidon.http.media/feature-registry.json
+[WARNING]   - META-INF/maven/io.helidon.http.media/helidon-http-media/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.http.media/helidon-http-media/pom.xml
+[WARNING]   - io.helidon.http.media.EntityIoBase
+[WARNING]   - io.helidon.http.media.EntityReader
+[WARNING]   - io.helidon.http.media.EntityReaderBase
+[WARNING]   - io.helidon.http.media.EntityWriter
+[WARNING]   - io.helidon.http.media.EntityWriterBase
+[WARNING]   - io.helidon.http.media.FormParamsSupport
+[WARNING]   - io.helidon.http.media.FormParamsSupport$FormParamsPlaintextReader
+[WARNING]   - 46 more...
+[WARNING] go-java-go-helidon.jar, helidon-common-resumable-4.4.1.jar define 7 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-resumable/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-resumable/pom.xml
+[WARNING]   - io.helidon.common.resumable.NoopResumable
+[WARNING]   - io.helidon.common.resumable.Resumable
+[WARNING]   - io.helidon.common.resumable.ResumableLookup
+[WARNING]   - io.helidon.common.resumable.ResumableSupport
+[WARNING]   - io.helidon.common.resumable.package-info
+[WARNING] go-java-go-helidon.jar, helidon-common-security-4.4.1.jar define 4 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-security/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-security/pom.xml
+[WARNING]   - io.helidon.common.security.SecurityContext
+[WARNING]   - io.helidon.common.security.package-info
+[WARNING] go-java-go-helidon.jar, helidon-common-types-4.4.1.jar define 83 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-types/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-types/pom.xml
+[WARNING]   - io.helidon.common.types.AccessModifier
+[WARNING]   - io.helidon.common.types.Annotated
+[WARNING]   - io.helidon.common.types.Annotation
+[WARNING]   - io.helidon.common.types.Annotation$Builder
+[WARNING]   - io.helidon.common.types.Annotation$BuilderBase
+[WARNING]   - io.helidon.common.types.Annotation$BuilderBase$AnnotationImpl
+[WARNING]   - io.helidon.common.types.AnnotationBlueprint
+[WARNING]   - io.helidon.common.types.AnnotationProperty
+[WARNING]   - 73 more...
+[WARNING] go-java-go-helidon.jar, helidon-common-4.4.1.jar define 61 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common/pom.xml
+[WARNING]   - META-INF/native-image/io.helidon.common/helidon-common/resource-config.json
+[WARNING]   - io.helidon.common.AccessorStyle
+[WARNING]   - io.helidon.common.Base64Value
+[WARNING]   - io.helidon.common.Builder
+[WARNING]   - io.helidon.common.Default
+[WARNING]   - io.helidon.common.Default$Boolean
+[WARNING]   - io.helidon.common.Default$Double
+[WARNING]   - io.helidon.common.Default$Int
+[WARNING]   - 51 more...
+[WARNING] go-java-go-helidon.jar, helidon-common-config-4.4.1.jar define 27 overlapping classes and resources: 
+[WARNING]   - META-INF/helidon/io.helidon.common.config/service-registry.json
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-config/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-config/pom.xml
+[WARNING]   - io.helidon.common.config.Config
+[WARNING]   - io.helidon.common.config.Config$Key
+[WARNING]   - io.helidon.common.config.ConfigBuilderSupport
+[WARNING]   - io.helidon.common.config.ConfigBuilderSupport$ConfiguredBuilder
+[WARNING]   - io.helidon.common.config.ConfigException
+[WARNING]   - io.helidon.common.config.ConfigFactory
+[WARNING]   - io.helidon.common.config.ConfigFactory__ServiceDescriptor
+[WARNING]   - 17 more...
+[WARNING] go-java-go-helidon.jar, helidon-http-encoding-4.4.1.jar define 17 overlapping classes and resources: 
+[WARNING]   - META-INF/helidon/io.helidon.http.encoding/feature-registry.json
+[WARNING]   - META-INF/maven/io.helidon.http.encoding/helidon-http-encoding/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.http.encoding/helidon-http-encoding/pom.xml
+[WARNING]   - io.helidon.http.encoding.ContentDecoder
+[WARNING]   - io.helidon.http.encoding.ContentEncoder
+[WARNING]   - io.helidon.http.encoding.ContentEncoding
+[WARNING]   - io.helidon.http.encoding.ContentEncodingContext
+[WARNING]   - io.helidon.http.encoding.ContentEncodingContextConfig
+[WARNING]   - io.helidon.http.encoding.ContentEncodingContextConfig$Builder
+[WARNING]   - io.helidon.http.encoding.ContentEncodingContextConfig$BuilderBase
+[WARNING]   - 7 more...
+[WARNING] go-java-go-helidon.jar, helidon-common-context-4.4.1.jar define 17 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-context/pom.properties
+[WARNING]   - META-INF/maven/io.helidon.common/helidon-common-context/pom.xml
+[WARNING]   - io.helidon.common.context.Context
+[WARNING]   - io.helidon.common.context.Context$Builder
+[WARNING]   - io.helidon.common.context.ContextAwareExecutorImpl
+[WARNING]   - io.helidon.common.context.ContextAwareExecutorService
+[WARNING]   - io.helidon.common.context.ContextAwareScheduledExecutorImpl
+[WARNING]   - io.helidon.common.context.Contexts
+[WARNING]   - io.helidon.common.context.ExecutorException
+[WARNING]   - io.helidon.common.context.ListContext
+[WARNING]   - 7 more...
+[WARNING] maven-shade-plugin has detected that some files are
+[WARNING] present in two or more JARs. When this happens, only one
+[WARNING] single version of the file is copied to the uber jar.
+[WARNING] Usually this is not harmful and you can skip these warnings,
+[WARNING] otherwise try to manually exclude artifacts based on
+[WARNING] mvn dependency:tree -Ddetail=true and the above output.
+[WARNING] See https://maven.apache.org/plugins/maven-shade-plugin/
+[INFO] Replacing original artifact with shaded artifact.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.604 s
+[INFO] Finished at: 2026-05-27T20:14:52-04:00
+[INFO] ------------------------------------------------------------------------
+/home/mark/redstack/go-java-go-2026/helidon-service/target/aot/go-java-go-helidon.aot

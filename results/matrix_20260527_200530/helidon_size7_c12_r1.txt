@@ -1,0 +1,12 @@
+gomaxprocs=12
+requests=100000
+failures=24152
+firstFailure=Get "http://localhost:20082/api/strings/Helidon": dial tcp 127.0.0.1:20082: connect: connection refused
+elapsed=2.684294167s
+requestsPerSecond=37253.74
+p50=252.264µs
+p95=793.192µs
+p99=1.54691ms
+p999=5.016532ms
+min=28.417µs
+max=18.256053ms

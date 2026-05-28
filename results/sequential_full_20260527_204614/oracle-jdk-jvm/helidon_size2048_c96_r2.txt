@@ -1,0 +1,11 @@
+gomaxprocs=12
+requests=8572
+failures=0
+elapsed=4.044137128s
+requestsPerSecond=2119.61
+p50=44.099173ms
+p95=48.15295ms
+p99=48.401683ms
+p999=49.848408ms
+min=41.619498ms
+max=49.9732ms
