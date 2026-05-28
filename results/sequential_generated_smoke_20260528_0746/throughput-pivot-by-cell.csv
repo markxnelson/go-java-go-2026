@@ -1,5 +1,0 @@
-runId,workFactor,endpointMode,payloadSize,concurrency,go-stdlibRpsMedian,oracle-jdk-jvmRpsMedian
-sequential_generated_smoke_20260528_0746,2,generated,7,1,5241.99,3410.43
-sequential_generated_smoke_20260528_0746,2,generated,7,12,31021.98,15403.81
-sequential_generated_smoke_20260528_0746,2,generated,2048,1,3344.20,22.37
-sequential_generated_smoke_20260528_0746,2,generated,2048,12,16074.94,262.46

@@ -3,3 +3,17 @@ knowledge
 .agents
 target/
 */target/
+
+# Local authoring / publication artifacts
+article/
+context/
+next.md
+scripts/generate-article-charts.py
+results/sequential_generated_graal_native_g1_*/
+results/**/load
+results/20260527_*/
+results/matrix_*/
+results/sequential_full_*/
+results/sequential_smoke*/
+results/sequential_generated_smoke_*/
+results/sequential_generated_probe*/

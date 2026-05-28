@@ -1,9 +1,0 @@
-runId,runtimeVariant,service,workFactor,endpointMode,payloadSize,concurrency,repeat,requests,failures,elapsed,requestsPerSecond,p50,p95,p99,p999,min,max,p50Nanos,p95Nanos,p99Nanos,p999Nanos,minNanos,maxNanos
-sequential_generated_smoke_20260528_0746,go-stdlib,go,2,generated,7,1,1,5243,0,1.000192767s,5241.99,182.222µs,263.835µs,353.101µs,720.39µs,59.509µs,799.288µs,182222,263835,353101,720390,59509
-799288,,,,,,,,,,,,,,,,,,,,,,
-sequential_generated_smoke_20260528_0746,go-stdlib,go,2,generated,7,12,1,31035,0,1.000419589s,31021.98,305.231µs,914.169µs,2.040255ms,3.720239ms,41.785µs,4.971096ms,305231,914169,2040255,3720239,41785
-4971096,,,,,,,,,,,,,,,,,,,,,,
-sequential_generated_smoke_20260528_0746,go-stdlib,go,2,generated,2048,1,1,3345,0,1.000237921s,3344.20,228.908µs,489.941µs,1.218181ms,8.979475ms,130.632µs,15.222797ms,228908,489941,1218181,8979475,130632
-15222797,,,,,,,,,,,,,,,,,,,,,,
-sequential_generated_smoke_20260528_0746,go-stdlib,go,2,generated,2048,12,1,16084,0,1.000563477s,16074.94,631.379µs,1.651242ms,2.99707ms,5.432053ms,90.886µs,21.22789ms,631379,1651242,2997070,5432053,90886
-21227890,,,,,,,,,,,,,,,,,,,,,,

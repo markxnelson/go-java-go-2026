@@ -1,5 +1,0 @@
-runId,runtimeVariant,service,workFactor,endpointMode,payloadSize,concurrency,repeats,requestsPerSecondMean,requestsPerSecondMedian,requestsPerSecondMin,requestsPerSecondMax,p50NanosMedian,p95NanosMedian,p99NanosMedian,p999NanosMedian,failuresTotal
-sequential_generated_probe_20260528_0750,go-stdlib,go,2,generated,2048,12,1,9628.68,9628.68,9628.68,9628.68,840217,3827942,6835340,13473722,0
-sequential_generated_probe_20260528_0750,go-stdlib,go,2,generated,2048,96,1,17657.31,17657.31,17657.31,17657.31,2281837,18571929,31497181,60848183,0
-sequential_generated_probe_20260528_0750,oracle-jdk-jvm,helidon,2,generated,2048,12,1,269.25,269.25,269.25,269.25,44014202,48023902,48379893,51663104,0
-sequential_generated_probe_20260528_0750,oracle-jdk-jvm,helidon,2,generated,2048,96,1,2136.47,2136.47,2136.47,2136.47,44050286,48128105,48346458,49103014,0

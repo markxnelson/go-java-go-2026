@@ -1,7 +1,0 @@
-requests=100000
-failures=0
-elapsed=4.729343818s
-requestsPerSecond=21144.58
-p50=3.229947ms
-p95=11.458412ms
-p99=18.150472ms

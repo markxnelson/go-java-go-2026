@@ -22,6 +22,7 @@ RUN_ID="$(basename "$RESULTS_DIR")"
 : "${JAVA_OPTS:=-XX:ActiveProcessorCount=${JAVA_PROCESSORS} -XX:MaxRAMPercentage=75}"
 : "${JAVA_VARIANTS:=oracle-jdk-jvm oracle-jdk-leyden-aot graalvm-jvm graalvm-native}"
 : "${GRAALVM_HOME:=}"
+: "${RUN_GO:=true}"
 
 SERVICE_PID=""
 
@@ -122,27 +123,35 @@ record_configuration() {
   echo "JAVA_OPTS=$JAVA_OPTS"
   echo "JAVA_VARIANTS=$JAVA_VARIANTS"
   echo "GRAALVM_HOME=$GRAALVM_HOME"
+  echo "RUN_GO=$RUN_GO"
 } > "$RESULTS_DIR/environment.txt" 2>&1
 
 echo "runId,runtimeVariant,service,status,workFactor,endpointMode,logRequests,gomaxprocs,goMemLimit,javaProcessors,javaOpts,notes" > "$RESULTS_DIR/configurations.csv"
 
-echo "Starting Go service alone"
-(
-  cd "$ROOT"
-  PORT="$GO_PORT" \
-    LOG_REQUESTS="$LOG_REQUESTS" \
-    WORK_FACTOR="$WORK_FACTOR" \
-    GOMAXPROCS="$GOMAXPROCS" \
-    GOMEMLIMIT="$GOMEMLIMIT" \
-    scripts/run-go.sh
-) > "$RESULTS_DIR/go-service.log" 2>&1 &
-SERVICE_PID="$!"
-wait_for_health "$GO_PORT" "go"
-record_configuration "go-stdlib" "go" "ran" "Go net/http, GOMAXPROCS set explicitly"
-run_service_matrix "go" "go-stdlib" "$GO_PORT"
-append_measurements "$RESULTS_DIR/go-stdlib/summary.csv"
-cleanup
-SERVICE_PID=""
+if [[ "$RUN_GO" == "true" ]]; then
+  echo "Starting Go service alone"
+  (
+    cd "$ROOT"
+    PORT="$GO_PORT" \
+      LOG_REQUESTS="$LOG_REQUESTS" \
+      WORK_FACTOR="$WORK_FACTOR" \
+      GOMAXPROCS="$GOMAXPROCS" \
+      GOMEMLIMIT="$GOMEMLIMIT" \
+      scripts/run-go.sh
+  ) > "$RESULTS_DIR/go-service.log" 2>&1 &
+  SERVICE_PID="$!"
+  if ! wait_for_health "$GO_PORT" "go"; then
+    record_configuration "go-stdlib" "go" "skipped" "Health check failed; see go-service.log"
+    cleanup
+    SERVICE_PID=""
+  else
+    record_configuration "go-stdlib" "go" "ran" "Go net/http, GOMAXPROCS set explicitly"
+    run_service_matrix "go" "go-stdlib" "$GO_PORT"
+    append_measurements "$RESULTS_DIR/go-stdlib/summary.csv"
+    cleanup
+    SERVICE_PID=""
+  fi
+fi
 
 for variant in $JAVA_VARIANTS; do
   case "$variant" in
@@ -180,7 +189,12 @@ for variant in $JAVA_VARIANTS; do
       scripts/run-java-variant.sh
   ) > "$RESULTS_DIR/${variant}-service.log" 2>&1 &
   SERVICE_PID="$!"
-  wait_for_health "$JAVA_PORT" "$variant"
+  if ! wait_for_health "$JAVA_PORT" "$variant"; then
+    record_configuration "$variant" "helidon" "skipped" "Health check failed; see ${variant}-service.log"
+    cleanup
+    SERVICE_PID=""
+    continue
+  fi
   record_configuration "$variant" "helidon" "ran" "Helidon SE; health output records virtual-thread request handling"
   run_service_matrix "helidon" "$variant" "$JAVA_PORT"
   append_measurements "$RESULTS_DIR/$variant/summary.csv"

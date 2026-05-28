@@ -1,6 +1,0 @@
-runId,runtimeVariant,service,status,workFactor,logRequests,gomaxprocs,goMemLimit,javaProcessors,javaOpts,notes
-sequential_full_20260527_204614,go-stdlib,go,ran,10,false,12,off,12,"-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75","Go net/http, GOMAXPROCS set explicitly"
-sequential_full_20260527_204614,oracle-jdk-jvm,helidon,ran,10,false,12,off,12,"-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75","Helidon SE; health output records virtual-thread request handling"
-sequential_full_20260527_204614,oracle-jdk-leyden-aot,helidon,ran,10,false,12,off,12,"-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75","Helidon SE; health output records virtual-thread request handling"
-sequential_full_20260527_204614,graalvm-jvm,helidon,skipped,10,false,12,off,12,"-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75","GRAALVM_HOME/bin/java not available"
-sequential_full_20260527_204614,graalvm-native,helidon,skipped,10,false,12,off,12,"-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75","native image executable not available"

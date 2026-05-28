@@ -1,9 +1,0 @@
-runId,runtimeVariant,service,workFactor,endpointMode,payloadSize,concurrency,repeats,requestsPerSecondMean,requestsPerSecondMedian,requestsPerSecondMin,requestsPerSecondMax,p50NanosMedian,p95NanosMedian,p99NanosMedian,p999NanosMedian,failuresTotal
-sequential_generated_smoke_20260528_0748,go-stdlib,go,2,generated,7,1,1,4932.04,4932.04,4932.04,4932.04,193280,275682,358709,679853,0
-sequential_generated_smoke_20260528_0748,go-stdlib,go,2,generated,7,12,1,32688.03,32688.03,32688.03,32688.03,288286,877084,1790195,3877491,0
-sequential_generated_smoke_20260528_0748,go-stdlib,go,2,generated,2048,1,1,3982.85,3982.85,3982.85,3982.85,232667,358968,640260,1025527,0
-sequential_generated_smoke_20260528_0748,go-stdlib,go,2,generated,2048,12,1,16130.26,16130.26,16130.26,16130.26,632252,1709353,2690488,4876963,0
-sequential_generated_smoke_20260528_0748,oracle-jdk-jvm,helidon,2,generated,7,1,1,3444.21,3444.21,3444.21,3444.21,269735,420621,586849,1457986,0
-sequential_generated_smoke_20260528_0748,oracle-jdk-jvm,helidon,2,generated,7,12,1,26205.72,26205.72,26205.72,26205.72,379611,987768,2057653,5152024,0
-sequential_generated_smoke_20260528_0748,oracle-jdk-jvm,helidon,2,generated,2048,1,1,21.53,21.53,21.53,21.53,47607424,50015087,50020145,50020145,0
-sequential_generated_smoke_20260528_0748,oracle-jdk-jvm,helidon,2,generated,2048,12,1,268.32,268.32,268.32,268.32,44059965,48066054,48168884,48544572,0

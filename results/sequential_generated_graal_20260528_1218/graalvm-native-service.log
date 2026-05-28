@@ -1,0 +1,36 @@
+May 28, 2026 12:23:59 PM io.helidon.common.features.HelidonFeatures features
+INFO: Helidon SE 4.4.1 has no registered features
+May 28, 2026 12:23:59 PM io.helidon.webserver.LoomServer parallel
+SEVERE: Failed to start listener: /0.0.0.0:26082
+java.util.concurrent.ExecutionException: java.io.UncheckedIOException: Failed to start server
+	at java.base@25.0.3/java.util.concurrent.FutureTask.report(FutureTask.java:124)
+	at java.base@25.0.3/java.util.concurrent.FutureTask.get(FutureTask.java:193)
+	at io.helidon.webserver.LoomServer.parallel(LoomServer.java:321)
+	at io.helidon.webserver.LoomServer.startIt(LoomServer.java:251)
+	at io.helidon.webserver.LoomServer.start(LoomServer.java:144)
+	at com.redstack.gojavago.Main.main(Main.java:38)
+	at java.base@25.0.3/java.lang.invoke.LambdaForm$DMH/sa346b79c.invokeStaticInit(LambdaForm$DMH)
+Caused by: java.io.UncheckedIOException: Failed to start server
+	at io.helidon.webserver.ServerListener.startIt(ServerListener.java:311)
+	at io.helidon.webserver.ServerListener.start(ServerListener.java:292)
+	at io.helidon.webserver.LoomServer.lambda$parallel$7(LoomServer.java:315)
+	at io.helidon.common.context.Contexts.runInContext(Contexts.java:117)
+	at io.helidon.webserver.LoomServer.lambda$parallel$8(LoomServer.java:313)
+	at java.base@25.0.3/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545)
+	at java.base@25.0.3/java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at java.base@25.0.3/java.util.concurrent.ThreadPerTaskExecutor$ThreadBoundFuture.run(ThreadPerTaskExecutor.java:323)
+	at java.base@25.0.3/java.lang.Thread.runWith(Thread.java:1487)
+	at java.base@25.0.3/java.lang.VirtualThread.run(VirtualThread.java:460)
+	at java.base@25.0.3/java.lang.VirtualThread$VThreadContinuation$1.run(VirtualThread.java:252)
+Caused by: java.net.BindException: Address already in use
+	at java.base@25.0.3/sun.nio.ch.Net.bind0(Native Method)
+	at java.base@25.0.3/sun.nio.ch.Net.bind(Net.java:522)
+	at java.base@25.0.3/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:335)
+	at java.base@25.0.3/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:297)
+	at io.helidon.webserver.ServerListener.startIt(ServerListener.java:308)
+	... 10 more
+
+May 28, 2026 12:23:59 PM io.helidon.webserver.LoomServer startIt
+SEVERE: Helidon WebServer failed to start, shutting down
+May 28, 2026 12:23:59 PM com.redstack.gojavago.Main main
+INFO: helidon service listening on http://localhost:-1 processors=12 maxMemoryBytes=34341388288 serverModel="Helidon WebServer LoomServer virtual-thread-per-task, tcpNoDelay=true" workFactor=10

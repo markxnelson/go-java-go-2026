@@ -5,6 +5,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 : "${GRAALVM_HOME:=}"
 : "${NATIVE_IMAGE:=native-image}"
 : "${NATIVE_IMAGE_NAME:=go-java-go-helidon-native}"
+: "${NATIVE_IMAGE_GC:=serial}"
 
 if [[ -n "$GRAALVM_HOME" ]]; then
   NATIVE_IMAGE="$GRAALVM_HOME/bin/native-image"
@@ -20,6 +21,7 @@ mvn -B -DskipTests package
 
 "$NATIVE_IMAGE" \
   --no-fallback \
+  --gc="$NATIVE_IMAGE_GC" \
   -H:+ReportExceptionStackTraces \
   -jar target/go-java-go-helidon.jar \
   "target/${NATIVE_IMAGE_NAME}"

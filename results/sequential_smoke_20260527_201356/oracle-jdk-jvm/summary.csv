@@ -1,3 +1,0 @@
-runId,runtimeVariant,service,workFactor,payloadSize,concurrency,repeat,requests,failures,elapsed,requestsPerSecond,p50,p95,p99,p999,min,max
-oracle-jdk-jvm,oracle-jdk-jvm,helidon,1,7,1,1,100000,0,22.431051536s,4458.11,189.817µs,353.63µs,754.46µs,2.46132ms,38.787µs,6.641993ms
-oracle-jdk-jvm,oracle-jdk-jvm,helidon,1,7,12,1,100000,0,2.731306719s,36612.51,276.119µs,718.024µs,1.305379ms,3.116654ms,38.645µs,8.5563ms

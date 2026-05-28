@@ -1,3 +1,0 @@
-runId,runtimeVariant,service,workFactor,payloadSize,concurrency,repeat,requests,failures,elapsed,requestsPerSecond,p50,p95,p99,p999,min,max
-sequential_smoke2_20260527_201555,oracle-jdk-jvm,helidon,1,7,1,1,7268,0,2.000149958s,3633.73,228.006µs,452.582µs,837.024µs,2.124202ms,117.115µs,6.142115ms
-sequential_smoke2_20260527_201555,oracle-jdk-jvm,helidon,1,7,12,1,73763,0,2.000433901s,36873.50,282.658µs,645.913µs,1.166069ms,2.315727ms,43.261µs,6.218736ms

@@ -1,1 +1,0 @@
-{"status":"UP","runtime":"go1.26.3","language":"go","runtimeInfo":{"numCPU":12,"gomaxprocs":12,"memoryLimitBytes":9223372036854775807,"serverModel":"net/http goroutine-per-connection/request"}}

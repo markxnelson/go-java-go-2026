@@ -1,9 +1,0 @@
-runId,runtimeVariant,service,workFactor,endpointMode,payloadSize,concurrency,repeat,requests,failures,elapsed,requestsPerSecond,p50,p95,p99,p999,min,max,p50Nanos,p95Nanos,p99Nanos,p999Nanos,minNanos,maxNanos
-sequential_generated_smoke_20260528_0746,oracle-jdk-jvm,helidon,2,generated,7,1,1,3411,0,1.000167051s,3410.43,278.372µs,422.302µs,542.981µs,1.109738ms,133.13µs,3.883732ms,278372,422302,542981,1109738,133130
-3883732,,,,,,,,,,,,,,,,,,,,,,
-sequential_generated_smoke_20260528_0746,oracle-jdk-jvm,helidon,2,generated,7,12,1,15411,0,1.000466547s,15403.81,503.168µs,2.085386ms,6.108077ms,16.423406ms,55.559µs,42.783162ms,503168,2085386,6108077,16423406,55559
-42783162,,,,,,,,,,,,,,,,,,,,,,
-sequential_generated_smoke_20260528_0746,oracle-jdk-jvm,helidon,2,generated,2048,1,1,23,0,1.028161988s,22.37,44.037418ms,48.021586ms,48.160296ms,48.160296ms,43.850719ms,48.160296ms,44037418,48021586,48160296,48160296,43850719
-48160296,,,,,,,,,,,,,,,,,,,,,,
-sequential_generated_smoke_20260528_0746,oracle-jdk-jvm,helidon,2,generated,2048,12,1,274,0,1.043963737s,262.46,44.500528ms,49.304202ms,58.321223ms,59.140345ms,1.970135ms,59.140345ms,44500528,49304202,58321223,59140345,1970135
-59140345,,,,,,,,,,,,,,,,,,,,,,

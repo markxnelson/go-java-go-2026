@@ -1,3 +1,0 @@
-runId,runtimeVariant,service,workFactor,endpointMode,payloadSize,concurrency,repeat,requests,failures,elapsed,requestsPerSecond,p50,p95,p99,p999,min,max,p50Nanos,p95Nanos,p99Nanos,p999Nanos,minNanos,maxNanos
-sequential_generated_probe_20260528_0750,oracle-jdk-jvm,helidon,2,generated,2048,12,1,1356,0,5.036205162s,269.25,44.014202ms,48.023902ms,48.379893ms,51.663104ms,42.548547ms,51.796338ms,44014202,48023902,48379893,51663104,42548547,51796338
-sequential_generated_probe_20260528_0750,oracle-jdk-jvm,helidon,2,generated,2048,96,1,10784,0,5.047578897s,2136.47,44.050286ms,48.128105ms,48.346458ms,49.103014ms,1.731039ms,49.708606ms,44050286,48128105,48346458,49103014,1731039,49708606

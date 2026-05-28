@@ -1,2 +1,0 @@
-2026/05/28 07:42:26 go service listening on http://localhost:24081 gomaxprocs=12 numCPU=12 workFactor=2
-2026/05/28 07:42:26 listen tcp :24081: socket: operation not permitted

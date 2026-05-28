@@ -1,0 +1,9 @@
+runId,runtimeVariant,service,workFactor,endpointMode,payloadSize,bestConcurrency,peakRequestsPerSecondMedian,p95NanosMedianAtPeak,p99NanosMedianAtPeak,failuresTotalAtPeak
+sequential_generated_graal_20260528_1218,graalvm-jvm,helidon,10,generated,7,192,87018.34,6771915,11291184,0
+sequential_generated_graal_20260528_1218,graalvm-jvm,helidon,10,generated,128,96,85708.22,3456217,5556998,0
+sequential_generated_graal_20260528_1218,graalvm-jvm,helidon,10,generated,2048,192,51837.13,10384009,15613703,0
+sequential_generated_graal_20260528_1218,graalvm-jvm,helidon,10,generated,8192,192,23641.71,17834020,25340475,0
+sequential_generated_graal_20260528_1218,graalvm-native,helidon,10,generated,7,192,93040.14,6307242,9910012,0
+sequential_generated_graal_20260528_1218,graalvm-native,helidon,10,generated,128,192,79302.20,7547879,11756127,0
+sequential_generated_graal_20260528_1218,graalvm-native,helidon,10,generated,2048,192,52324.78,10197403,15013480,0
+sequential_generated_graal_20260528_1218,graalvm-native,helidon,10,generated,8192,192,24675.50,16989259,23614839,0
