@@ -1,0 +1,5 @@
+.env
+knowledge
+.agents
+target/
+*/target/
