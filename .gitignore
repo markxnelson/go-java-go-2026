@@ -5,11 +5,12 @@ target/
 */target/
 
 # Local authoring / publication artifacts
-article/
+article/*
+!article/
+!article/can-java-microservices-be-as-fast-as-go-2026.md
 context/
 next.md
 scripts/generate-article-charts.py
-results/sequential_generated_graal_native_g1_*/
 results/**/load
 results/20260527_*/
 results/matrix_*/

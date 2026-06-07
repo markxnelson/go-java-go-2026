@@ -1,3 +1,0 @@
-runId,runtimeVariant,service,status,workFactor,endpointMode,logRequests,gomaxprocs,goMemLimit,javaProcessors,javaOpts,notes
-sequential_generated_graal_20260528_1218,graalvm-jvm,helidon,ran,10,generated,false,12,off,12,"-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75","Helidon SE; health output records virtual-thread request handling"
-sequential_generated_graal_20260528_1218,graalvm-native,helidon,ran,10,generated,false,12,off,12,"-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75","Helidon SE; health output records virtual-thread request handling"

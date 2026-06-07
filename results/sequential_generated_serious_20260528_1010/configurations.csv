@@ -2,5 +2,3 @@ runId,runtimeVariant,service,status,workFactor,endpointMode,logRequests,gomaxpro
 sequential_generated_serious_20260528_1010,go-stdlib,go,ran,10,generated,false,12,off,12,"-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75","Go net/http, GOMAXPROCS set explicitly"
 sequential_generated_serious_20260528_1010,oracle-jdk-jvm,helidon,ran,10,generated,false,12,off,12,"-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75","Helidon SE; health output records virtual-thread request handling"
 sequential_generated_serious_20260528_1010,oracle-jdk-leyden-aot,helidon,ran,10,generated,false,12,off,12,"-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75","Helidon SE; health output records virtual-thread request handling"
-sequential_generated_serious_20260528_1010,graalvm-jvm,helidon,skipped,10,generated,false,12,off,12,"-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75","GRAALVM_HOME/bin/java not available"
-sequential_generated_serious_20260528_1010,graalvm-native,helidon,skipped,10,generated,false,12,off,12,"-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75","native image executable not available"

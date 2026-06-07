@@ -20,8 +20,7 @@ RUN_ID="$(basename "$RESULTS_DIR")"
 : "${GOMEMLIMIT:=off}"
 : "${JAVA_PROCESSORS:=$(nproc)}"
 : "${JAVA_OPTS:=-XX:ActiveProcessorCount=${JAVA_PROCESSORS} -XX:MaxRAMPercentage=75}"
-: "${JAVA_VARIANTS:=oracle-jdk-jvm oracle-jdk-leyden-aot graalvm-jvm graalvm-native}"
-: "${GRAALVM_HOME:=}"
+: "${JAVA_VARIANTS:=oracle-jdk-jvm oracle-jdk-leyden-aot}"
 : "${RUN_GO:=true}"
 
 SERVICE_PID=""
@@ -122,7 +121,6 @@ record_configuration() {
   echo "JAVA_PROCESSORS=$JAVA_PROCESSORS"
   echo "JAVA_OPTS=$JAVA_OPTS"
   echo "JAVA_VARIANTS=$JAVA_VARIANTS"
-  echo "GRAALVM_HOME=$GRAALVM_HOME"
   echo "RUN_GO=$RUN_GO"
 } > "$RESULTS_DIR/environment.txt" 2>&1
 
@@ -162,18 +160,6 @@ for variant in $JAVA_VARIANTS; do
         continue
       fi
       ;;
-    graalvm-jvm)
-      if [[ -z "$GRAALVM_HOME" || ! -x "$GRAALVM_HOME/bin/java" ]]; then
-        record_configuration "$variant" "helidon" "skipped" "GRAALVM_HOME/bin/java not available"
-        continue
-      fi
-      ;;
-    graalvm-native)
-      if [[ ! -x "$ROOT/helidon-service/target/go-java-go-helidon-native" ]]; then
-        record_configuration "$variant" "helidon" "skipped" "native image executable not available"
-        continue
-      fi
-      ;;
   esac
 
   echo "Starting Helidon service alone: $variant"
@@ -185,7 +171,6 @@ for variant in $JAVA_VARIANTS; do
       WORK_FACTOR="$WORK_FACTOR" \
       JAVA_PROCESSORS="$JAVA_PROCESSORS" \
       JAVA_OPTS="$JAVA_OPTS" \
-      GRAALVM_HOME="$GRAALVM_HOME" \
       scripts/run-java-variant.sh
   ) > "$RESULTS_DIR/${variant}-service.log" 2>&1 &
   SERVICE_PID="$!"

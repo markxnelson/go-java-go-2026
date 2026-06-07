@@ -60,5 +60,4 @@ GOMAXPROCS=12
 GOMEMLIMIT=off
 JAVA_PROCESSORS=12
 JAVA_OPTS=-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75
-JAVA_VARIANTS=oracle-jdk-jvm oracle-jdk-leyden-aot graalvm-jvm graalvm-native
-GRAALVM_HOME=
+JAVA_VARIANTS=oracle-jdk-jvm oracle-jdk-leyden-aot

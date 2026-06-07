@@ -1,6 +1,0 @@
-runId,runtimeVariant,service,status,workFactor,endpointMode,logRequests,gomaxprocs,goMemLimit,javaProcessors,javaOpts,notes
-combined_go_java_graal_20260528,go-stdlib,go,ran,10,generated,false,12,off,12,-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75,"Go net/http, GOMAXPROCS set explicitly"
-combined_go_java_graal_20260528,oracle-jdk-jvm,helidon,ran,10,generated,false,12,off,12,-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75,Helidon SE; health output records virtual-thread request handling
-combined_go_java_graal_20260528,oracle-jdk-leyden-aot,helidon,ran,10,generated,false,12,off,12,-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75,Helidon SE; health output records virtual-thread request handling
-combined_go_java_graal_20260528,graalvm-jvm,helidon,ran,10,generated,false,12,off,12,-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75,Helidon SE; health output records virtual-thread request handling
-combined_go_java_graal_20260528,graalvm-native,helidon,ran,10,generated,false,12,off,12,-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75,Helidon SE; health output records virtual-thread request handling

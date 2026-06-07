@@ -14,10 +14,9 @@ The baseline versions for the 2026 article are:
 
 - Go 1.26.3
 - Oracle JDK 26.0.1
-- Oracle GraalVM 25.0.3+9.1, JDK 25 LTS
 - Helidon 4.4.1
 
-The Oracle JDK rows and GraalVM rows are intentionally recorded as separate runtime shapes because they are not the same JDK line. The code is plain Java and does not depend on preview language features.
+The Java rows are intentionally recorded as separate runtime shapes for the regular Oracle JDK JVM and Oracle JDK with a Leyden AOT cache. The code is plain Java and does not depend on preview language features.
 
 ## Layout
 
@@ -74,17 +73,6 @@ go run ./cmd/load -url http://localhost:8080/api/generated/128 -concurrency 100 
 
 It prints request count, failures, elapsed time, requests per second, and latency percentiles.
 
-## Build GraalVM Native Image
-
-The native-image build defaults to GraalVM's Serial GC because that is the configuration that passed the Helidon health check in this local run. You can experiment with `NATIVE_IMAGE_GC=G1`, but the G1 binary did not pass `/health` for this app during the article pass.
-
-```bash
-GRAALVM_HOME=/path/to/graalvm-jdk-25.0.3+9.1 \
-JAVA_HOME=/path/to/graalvm-jdk-25.0.3+9.1 \
-PATH=/path/to/graalvm-jdk-25.0.3+9.1/bin:/path/to/apache-maven/bin:$PATH \
-scripts/build-native-image.sh
-```
-
 ## Reproduce The Sequential Matrix
 
 The sequential benchmark starts one service, runs the matrix, stops it, and then starts the next service. This avoids measuring Go and Java while they compete for the same machine.
@@ -98,8 +86,7 @@ PAYLOAD_SIZES="7 128 2048 8192" \
 REPEATS=2 \
 DURATION=5s \
 WARMUP_DURATION=2s \
-JAVA_VARIANTS="oracle-jdk-jvm oracle-jdk-leyden-aot graalvm-jvm graalvm-native" \
-GRAALVM_HOME=/path/to/graalvm-jdk-25.0.3+9.1 \
+JAVA_VARIANTS="oracle-jdk-jvm oracle-jdk-leyden-aot" \
 WORK_FACTOR=10 \
 ENDPOINT_MODE=generated \
 scripts/run-sequential-matrix.sh
@@ -113,4 +100,4 @@ Each run writes:
 - `peak-throughput-by-payload.csv`
 - `throughput-pivot-by-cell.csv`
 
-The original Go/Oracle JDK run used in the article is under `results/sequential_generated_serious_20260528_1010/`. The later GraalVM run is under `results/sequential_generated_graal_20260528_1218/`. The combined publication tables and chart inputs are under `results/combined_go_java_graal_20260528/`.
+The Go/Oracle JDK run used in the article is under `results/sequential_generated_serious_20260528_1010/`.
