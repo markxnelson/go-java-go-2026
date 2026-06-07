@@ -100,4 +100,4 @@ Each run writes:
 - `peak-throughput-by-payload.csv`
 - `throughput-pivot-by-cell.csv`
 
-The Go/Oracle JDK run used in the article is under `results/sequential_generated_serious_20260528_1010/`.
+The Go/Oracle JDK run used in the article is under `results/sequential_generated_serious_20260607_165332/`.

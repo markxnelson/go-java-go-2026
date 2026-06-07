@@ -1,0 +1,33 @@
+Jun 07, 2026 5:07:04 PM io.helidon.webserver.LoomServer parallel
+SEVERE: Failed to start listener: /0.0.0.0:25082
+java.util.concurrent.ExecutionException: java.io.UncheckedIOException: Failed to start server
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:124)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:193)
+	at io.helidon.webserver.LoomServer.parallel(LoomServer.java:321)
+	at io.helidon.webserver.LoomServer.startIt(LoomServer.java:251)
+	at io.helidon.webserver.LoomServer.start(LoomServer.java:144)
+	at com.redstack.gojavago.Main.main(Main.java:38)
+Caused by: java.io.UncheckedIOException: Failed to start server
+	at io.helidon.webserver.ServerListener.startIt(ServerListener.java:311)
+	at io.helidon.webserver.ServerListener.start(ServerListener.java:292)
+	at io.helidon.webserver.LoomServer.lambda$parallel$7(LoomServer.java:315)
+	at io.helidon.common.context.Contexts.runInContext(Contexts.java:117)
+	at io.helidon.webserver.LoomServer.lambda$parallel$8(LoomServer.java:313)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:330)
+	at java.base/java.util.concurrent.ThreadPerTaskExecutor$ThreadBoundFuture.run(ThreadPerTaskExecutor.java:323)
+	at java.base/java.lang.VirtualThread.run(VirtualThread.java:475)
+Caused by: java.net.BindException: Address already in use
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:525)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:333)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:296)
+	at io.helidon.webserver.ServerListener.startIt(ServerListener.java:308)
+	... 8 more
+
+Jun 07, 2026 5:07:04 PM io.helidon.webserver.LoomServer startIt
+SEVERE: Helidon WebServer failed to start, shutting down
+Jun 07, 2026 5:07:04 PM io.helidon.common.features.HelidonFeatures features
+INFO: Helidon SE 4.4.1 features: [Config, Encoding, Media, Registry, WebServer]
+Jun 07, 2026 5:07:04 PM com.redstack.gojavago.Main main
+INFO: helidon service listening on http://localhost:-1 processors=12 maxMemoryBytes=50264539136 serverModel="Helidon WebServer LoomServer virtual-thread-per-task, tcpNoDelay=true" workFactor=10
