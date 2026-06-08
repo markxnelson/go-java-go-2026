@@ -1,0 +1,4 @@
+runId,runtimeVariant,service,status,workFactor,endpointMode,logRequests,gomaxprocs,goMemLimit,javaProcessors,javaOpts,leydenJavaOpts,serviceWarmupDuration,notes
+sequential_generated_leyden_feedback_full_20260608_070043,go-stdlib,go,ran,10,generated,false,12,off,12,"-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75","",10s,"Go net/http, GOMAXPROCS set explicitly"
+sequential_generated_leyden_feedback_full_20260608_070043,oracle-jdk-jvm,helidon,ran,10,generated,false,12,off,12,"-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75","",10s,"Helidon SE; health output records virtual-thread request handling"
+sequential_generated_leyden_feedback_full_20260608_070043,oracle-jdk-leyden-aot,helidon,ran,10,generated,false,12,off,12,"-XX:ActiveProcessorCount=12 -XX:MaxRAMPercentage=75","-XX:+UnlockDiagnosticVMOptions -XX:-AOTRecordTraining -XX:-AOTReplayTraining",10s,"Helidon SE; health output records virtual-thread request handling"

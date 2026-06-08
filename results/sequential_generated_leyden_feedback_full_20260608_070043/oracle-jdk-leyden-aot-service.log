@@ -1,0 +1,16 @@
+Jun 08, 2026 7:29:25 AM io.helidon.webserver.ServerListener startIt
+INFO: [0x63bf2566] http://0.0.0.0:26382 bound for socket '@default'
+Jun 08, 2026 7:29:25 AM io.helidon.logging.jul.JulProvider doConfigureLogging
+INFO: Logging at runtime configured using defaults
+Jun 08, 2026 7:29:25 AM io.helidon.webserver.LoomServer startIt
+INFO: Started all channels in 12 milliseconds. 234 milliseconds since JVM startup. Java 26.0.1+8-34
+Jun 08, 2026 7:29:25 AM com.redstack.gojavago.Main main
+INFO: helidon service listening on http://localhost:26382 processors=12 maxMemoryBytes=50264539136 serverModel="Helidon WebServer LoomServer virtual-thread-per-task, tcpNoDelay=true" workFactor=10
+Jun 08, 2026 7:29:25 AM io.helidon.common.features.HelidonFeatures features
+INFO: Helidon SE 4.4.1 features: [Config, Encoding, Media, Registry, WebServer]
+Jun 08, 2026 7:43:40 AM io.helidon.Main shutdown
+INFO: Shutdown requested by JVM shutting down
+Jun 08, 2026 7:43:40 AM io.helidon.webserver.ServerListener listen
+INFO: [0x63bf2566] @default socket closed.
+Jun 08, 2026 7:43:40 AM io.helidon.Main shutdown
+INFO: Shutdown finished
