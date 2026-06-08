@@ -65,7 +65,7 @@ The `strings` endpoint is useful for simple functional checks. The generated end
 
 That distinction matters.
 
-In an early run I tested a 2 KB input by putting a 2 KB string directly in the URL path. That mostly told me how each router handled a silly path parameter. Interesting, maybe, but not the thing I wanted to measure. The serious run uses `/api/generated/{size}` so the URL stays small and the application generates the requested input size inside the handler.
+In an early run I tested a 2 KB input by putting a 2 KB string directly in the URL path. That mostly told me how each router handled a silly path parameter. Interesting, maybe, but not the thing I wanted to measure. The final full run uses `/api/generated/{size}` so the URL stays small and the application generates the requested input size inside the handler.
 
 Each request does the same small unit of work:
 
@@ -76,7 +76,7 @@ Each request does the same small unit of work:
 - repeat extra CRC work according to `WORK_FACTOR`
 - return JSON with the result and runtime metadata
 
-For the serious run, `WORK_FACTOR=10`. Request logging was off.
+For the final full run, `WORK_FACTOR=10`. Request logging was off.
 
 This is still a small synthetic service. It is not a shopping cart, a fraud system, or a payments API. It has no database, no TLS, no queue, no JSON parser on the inbound side, and no remote dependency. That is intentional. The point is to make the hot path small enough that runtime and server behavior are visible.
 
@@ -84,7 +84,7 @@ This is still a small synthetic service. It is not a shopping cart, a fraud syst
 
 The benchmark runner starts one service, runs the full matrix, stops it, and then starts the next service. Go and Java do not run at the same time, so they are not competing with each other for CPU or memory.
 
-The serious run used:
+The final full run used:
 
 ```text
 payload sizes:      7, 128, 2048, 8192 bytes
@@ -133,7 +133,7 @@ The pivot file is meant for charts. It pivots median throughput by payload and c
 
 ## The Boring Tuning Detail That Changed The Java Result
 
-Before the serious run, I hit a strange result.
+Before the benchmark run, I hit a strange result.
 
 The Helidon service looked fine for tiny responses, but larger generated responses had a suspicious latency floor around 44 to 48 ms when the Go load driver reused persistent HTTP/1.1 connections. A fresh `curl` request did not show the same behavior after warmup. That smelled less like application code and more like packet behavior.
 
@@ -160,7 +160,7 @@ Both services also set `Content-Length` explicitly for known-size JSON responses
 
 Here is the short version: for this service, on this machine, Java was not merely "as fast as Go." Once the test moved beyond the smallest case, the Java implementation often scaled better.
 
-For this update, the runner used a 10-second service warmup after each service started, plus a 10-second warmup before every measured cell. The first draft of the run used only a 2-second per-cell warmup. After feedback from the Leyden team, I also ran the Leyden replay with diagnostic options that disable record and replay training during measurement.
+For this update, the runner used a 10-second service warmup after each service started, plus a 10-second warmup before every measured cell. The first draft of the run used only a 2-second per-cell warmup. After feedback from the Leyden team, the final full run also ran the Leyden replay with diagnostic options that disable record and replay training during measurement.
 
 At the smallest generated payload, all three runs were in the same neighborhood at low concurrency. With one worker and a 7-byte payload, Go reached about 4,501 requests per second. The regular Oracle JDK run reached about 3,828 requests per second, and the Leyden AOT run reached about 4,570.
 
@@ -200,7 +200,7 @@ And the high-concurrency cells that anchor the narrative are:
 
 ![Tail latency at peak throughput](assets/go-java-2026-tail-latency-at-peak.png)
 
-No measured row in the serious run had request failures.
+No measured row in the final full run had request failures.
 
 That is the interesting version of the story. Not a slogan, but a curve.
 
@@ -280,8 +280,8 @@ Run the sequential matrix:
 
 ```bash
 RESULTS_DIR=/home/mark/redstack/go-java-go-2026/results/sequential_generated_$(date +%Y%m%d_%H%M%S) \
-GO_PORT=25081 \
-JAVA_PORT=25082 \
+GO_PORT=26381 \
+JAVA_PORT=26382 \
 CONCURRENCY_LEVELS="1 6 12 24 48 96 192" \
 PAYLOAD_SIZES="7 128 2048 8192" \
 REPEATS=2 \
