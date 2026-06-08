@@ -68,7 +68,7 @@ The load driver is deliberately small so the article can explain it in a few lin
 
 ```bash
 cd bench
-go run ./cmd/load -url http://localhost:8080/api/generated/128 -concurrency 100 -duration 10s -warmup-duration 3s
+go run ./cmd/load -url http://localhost:8080/api/generated/128 -concurrency 100 -duration 10s -warmup-duration 10s
 ```
 
 It prints request count, failures, elapsed time, requests per second, and latency percentiles.
@@ -85,7 +85,8 @@ CONCURRENCY_LEVELS="1 6 12 24 48 96 192" \
 PAYLOAD_SIZES="7 128 2048 8192" \
 REPEATS=2 \
 DURATION=5s \
-WARMUP_DURATION=2s \
+WARMUP_DURATION=10s \
+SERVICE_WARMUP_DURATION=10s \
 JAVA_VARIANTS="oracle-jdk-jvm oracle-jdk-leyden-aot" \
 WORK_FACTOR=10 \
 ENDPOINT_MODE=generated \

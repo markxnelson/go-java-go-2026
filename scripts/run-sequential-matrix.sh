@@ -12,7 +12,8 @@ RUN_ID="$(basename "$RESULTS_DIR")"
 : "${PAYLOAD_SIZES:=7 128 2048}"
 : "${REPEATS:=2}"
 : "${DURATION:=8s}"
-: "${WARMUP_DURATION:=3s}"
+: "${WARMUP_DURATION:=10s}"
+: "${SERVICE_WARMUP_DURATION:=10s}"
 : "${WORK_FACTOR:=1}"
 : "${ENDPOINT_MODE:=generated}"
 : "${LOG_REQUESTS:=false}"
@@ -20,6 +21,7 @@ RUN_ID="$(basename "$RESULTS_DIR")"
 : "${GOMEMLIMIT:=off}"
 : "${JAVA_PROCESSORS:=$(nproc)}"
 : "${JAVA_OPTS:=-XX:ActiveProcessorCount=${JAVA_PROCESSORS} -XX:MaxRAMPercentage=75}"
+: "${LEYDEN_JAVA_OPTS:=-XX:+UnlockDiagnosticVMOptions -XX:-AOTRecordTraining -XX:-AOTReplayTraining}"
 : "${JAVA_VARIANTS:=oracle-jdk-jvm oracle-jdk-leyden-aot}"
 : "${RUN_GO:=true}"
 
@@ -44,6 +46,94 @@ wait_for_health() {
   done
   echo "Timed out waiting for port $port" >&2
   return 1
+}
+
+wait_for_shutdown() {
+  local port="$1"
+  for _ in $(seq 1 120); do
+    if ! curl -fsS "http://localhost:${port}/health" > /dev/null 2>&1; then
+      return 0
+    fi
+    sleep 0.25
+  done
+  echo "Timed out waiting for port $port to stop accepting health checks" >&2
+  return 1
+}
+
+payload() {
+  local size="$1"
+  if [[ "$size" == "7" ]]; then
+    printf "Helidon"
+    return
+  fi
+  printf "%*s" "$size" "" | tr " " "x"
+}
+
+warmup_url() {
+  local port="$1"
+  local payload_size="$2"
+  local value
+
+  case "$ENDPOINT_MODE" in
+    generated)
+      printf "http://localhost:%s/api/generated/%s" "$port" "$payload_size"
+      ;;
+    path)
+      value="$(payload "$payload_size")"
+      printf "http://localhost:%s/api/strings/%s" "$port" "$value"
+      ;;
+    *)
+      echo "Unknown ENDPOINT_MODE: $ENDPOINT_MODE" >&2
+      return 2
+      ;;
+  esac
+}
+
+duration_seconds() {
+  local duration="$1"
+  case "$duration" in
+    *ms)
+      echo 1
+      ;;
+    *s)
+      echo "${duration%s}"
+      ;;
+    *m)
+      echo "$(( ${duration%m} * 60 ))"
+      ;;
+    *h)
+      echo "$(( ${duration%h} * 3600 ))"
+      ;;
+    *)
+      echo "$duration"
+      ;;
+  esac
+}
+
+warm_service_after_start() {
+  local port="$1"
+  local service="$2"
+  local duration="$SERVICE_WARMUP_DURATION"
+  local seconds
+  local start
+  local url
+
+  if [[ "$duration" == "0" || "$duration" == "0s" ]]; then
+    return 0
+  fi
+
+  echo "Warming $service service for $duration before benchmark measurements"
+  seconds="$(duration_seconds "$duration")"
+  start="$SECONDS"
+  while (( SECONDS - start < seconds )); do
+    for payload_size in $PAYLOAD_SIZES; do
+      url="$(warmup_url "$port" "$payload_size")"
+      curl -fsS --max-time 5 "$url" > /dev/null || true
+      if (( SECONDS - start >= seconds )); then
+        break
+      fi
+    done
+  done
 }
 
 run_service_matrix() {
@@ -84,7 +174,11 @@ record_configuration() {
   local service="$2"
   local status="$3"
   local notes="$4"
-  printf "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n" \
+  local effective_leyden_java_opts=""
+  if [[ "$runtime_variant" == "oracle-jdk-leyden-aot" ]]; then
+    effective_leyden_java_opts="$LEYDEN_JAVA_OPTS"
+  fi
+  printf "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n" \
     "$(basename "$RESULTS_DIR")" \
     "$runtime_variant" \
     "$service" \
@@ -96,6 +190,8 @@ record_configuration() {
     "$GOMEMLIMIT" \
     "$JAVA_PROCESSORS" \
     "\"$JAVA_OPTS\"" \
+    "\"$effective_leyden_java_opts\"" \
+    "$SERVICE_WARMUP_DURATION" \
     "\"$notes\"" >> "$RESULTS_DIR/configurations.csv"
 }
 
@@ -113,6 +209,7 @@ record_configuration() {
   echo "REPEATS=$REPEATS"
   echo "DURATION=$DURATION"
   echo "WARMUP_DURATION=$WARMUP_DURATION"
+  echo "SERVICE_WARMUP_DURATION=$SERVICE_WARMUP_DURATION"
   echo "WORK_FACTOR=$WORK_FACTOR"
   echo "ENDPOINT_MODE=$ENDPOINT_MODE"
   echo "LOG_REQUESTS=$LOG_REQUESTS"
@@ -120,17 +217,20 @@ record_configuration() {
   echo "GOMEMLIMIT=$GOMEMLIMIT"
   echo "JAVA_PROCESSORS=$JAVA_PROCESSORS"
   echo "JAVA_OPTS=$JAVA_OPTS"
+  echo "LEYDEN_JAVA_OPTS=$LEYDEN_JAVA_OPTS"
   echo "JAVA_VARIANTS=$JAVA_VARIANTS"
   echo "RUN_GO=$RUN_GO"
 } > "$RESULTS_DIR/environment.txt" 2>&1
 
-echo "runId,runtimeVariant,service,status,workFactor,endpointMode,logRequests,gomaxprocs,goMemLimit,javaProcessors,javaOpts,notes" > "$RESULTS_DIR/configurations.csv"
+echo "runId,runtimeVariant,service,status,workFactor,endpointMode,logRequests,gomaxprocs,goMemLimit,javaProcessors,javaOpts,leydenJavaOpts,serviceWarmupDuration,notes" > "$RESULTS_DIR/configurations.csv"
 
 if [[ "$RUN_GO" == "true" ]]; then
+  wait_for_shutdown "$GO_PORT"
   echo "Starting Go service alone"
   (
     cd "$ROOT"
-    PORT="$GO_PORT" \
+    exec env \
+      PORT="$GO_PORT" \
       LOG_REQUESTS="$LOG_REQUESTS" \
       WORK_FACTOR="$WORK_FACTOR" \
       GOMAXPROCS="$GOMAXPROCS" \
@@ -141,12 +241,15 @@ if [[ "$RUN_GO" == "true" ]]; then
   if ! wait_for_health "$GO_PORT" "go"; then
     record_configuration "go-stdlib" "go" "skipped" "Health check failed; see go-service.log"
     cleanup
+    wait_for_shutdown "$GO_PORT"
     SERVICE_PID=""
   else
+    warm_service_after_start "$GO_PORT" "go-stdlib"
     record_configuration "go-stdlib" "go" "ran" "Go net/http, GOMAXPROCS set explicitly"
     run_service_matrix "go" "go-stdlib" "$GO_PORT"
     append_measurements "$RESULTS_DIR/go-stdlib/summary.csv"
     cleanup
+    wait_for_shutdown "$GO_PORT"
     SERVICE_PID=""
   fi
 fi
@@ -162,28 +265,34 @@ for variant in $JAVA_VARIANTS; do
       ;;
   esac
 
+  wait_for_shutdown "$JAVA_PORT"
   echo "Starting Helidon service alone: $variant"
   (
     cd "$ROOT"
-    VARIANT="$variant" \
+    exec env \
+      VARIANT="$variant" \
       PORT="$JAVA_PORT" \
       LOG_REQUESTS="$LOG_REQUESTS" \
       WORK_FACTOR="$WORK_FACTOR" \
       JAVA_PROCESSORS="$JAVA_PROCESSORS" \
       JAVA_OPTS="$JAVA_OPTS" \
+      LEYDEN_JAVA_OPTS="$LEYDEN_JAVA_OPTS" \
       scripts/run-java-variant.sh
   ) > "$RESULTS_DIR/${variant}-service.log" 2>&1 &
   SERVICE_PID="$!"
   if ! wait_for_health "$JAVA_PORT" "$variant"; then
     record_configuration "$variant" "helidon" "skipped" "Health check failed; see ${variant}-service.log"
     cleanup
+    wait_for_shutdown "$JAVA_PORT"
     SERVICE_PID=""
     continue
   fi
+  warm_service_after_start "$JAVA_PORT" "$variant"
   record_configuration "$variant" "helidon" "ran" "Helidon SE; health output records virtual-thread request handling"
   run_service_matrix "helidon" "$variant" "$JAVA_PORT"
   append_measurements "$RESULTS_DIR/$variant/summary.csv"
   cleanup
+  wait_for_shutdown "$JAVA_PORT"
   SERVICE_PID=""
 done
 

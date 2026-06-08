@@ -7,6 +7,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 : "${PORT:=8082}"
 : "${JAVA_PROCESSORS:=$(nproc)}"
 : "${JAVA_OPTS:=-XX:ActiveProcessorCount=${JAVA_PROCESSORS} -XX:MaxRAMPercentage=75}"
+: "${LEYDEN_JAVA_OPTS:=-XX:+UnlockDiagnosticVMOptions -XX:-AOTRecordTraining -XX:-AOTReplayTraining}"
 : "${LOG_REQUESTS:=false}"
 : "${WORK_FACTOR:=1}"
 : "${AOT_CACHE:=$ROOT/helidon-service/target/aot/go-java-go-helidon.aot}"
@@ -18,6 +19,7 @@ export WORK_FACTOR
 cd "$ROOT/helidon-service"
 
 read -r -a JAVA_OPTS_ARRAY <<< "$JAVA_OPTS"
+read -r -a LEYDEN_JAVA_OPTS_ARRAY <<< "$LEYDEN_JAVA_OPTS"
 
 case "$VARIANT" in
   oracle-jdk-jvm)
@@ -29,7 +31,7 @@ case "$VARIANT" in
       echo "Run scripts/prepare-leyden-aot.sh first." >&2
       exit 2
     fi
-    exec "$JAVA_HOME/bin/java" "${JAVA_OPTS_ARRAY[@]}" -XX:AOTCache="$AOT_CACHE" -jar target/go-java-go-helidon.jar
+    exec "$JAVA_HOME/bin/java" "${JAVA_OPTS_ARRAY[@]}" "${LEYDEN_JAVA_OPTS_ARRAY[@]}" -XX:AOTCache="$AOT_CACHE" -jar target/go-java-go-helidon.jar
     ;;
   *)
     echo "Unknown VARIANT: $VARIANT" >&2
