@@ -216,7 +216,7 @@ Leyden AOT did not simply make every individual cell faster, but with the replay
 
 It had the best peak throughput for every payload in this run. At 7 bytes, the Leyden peak was about 99,099 requests per second at concurrency 192, with p95 around 6.0 ms and p99 around 9.1 ms. At 128 bytes it peaked around 91,124 requests per second. At 2 KB it peaked around 41,604. At 8 KB it peaked around 15,493.
 
-That does not mean Leyden won every row. The regular Oracle JDK JVM run still won several steady-state cells, and Go still had strong low-concurrency cells. But the overall peak-throughput story shifted: Leyden AOT was the highest peak runtime shape for each payload in this matrix.
+That does not mean Leyden won every row. Leyden AOT had the highest throughput in 20 of the 28 payload/concurrency cells, while the regular Oracle JDK JVM run won the other 8. Go did not win an individual cell in this final matrix, though it stayed close at the smallest low-concurrency cases. The overall peak-throughput story shifted: Leyden AOT was the highest peak runtime shape for each payload in this matrix.
 
 That is not disappointing. It is useful. Leyden AOT is not a magic "make benchmark bigger" switch. It changes startup, warmup, and runtime behavior in ways that need to be measured against the workload you actually care about.
 
